@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using NotOYO.Models;
 
 namespace NotOYO.Controllers
 {

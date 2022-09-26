@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NotOYO.Models
+namespace NotOYO.Models.DTO
 {
-    public class Country
+    public class CountryDTO
     {
         [Required]
         public int Id { get; set; }
