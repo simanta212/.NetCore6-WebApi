@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using NotOYO.Models;
 using Serilog;
 using Serilog.Events;
 
@@ -10,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Host.UseSerilog();
+builder.Services.AddDbContext<Mapper>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString"))); 
 
 var app = builder.Build();
 
@@ -19,6 +23,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors( o =>
+{
+    o.AllowAnyOrigin();
+    o.AllowAnyHeader();
+    o.AllowAnyMethod();
+});
 
 app.UseSerilogRequestLogging();
 
