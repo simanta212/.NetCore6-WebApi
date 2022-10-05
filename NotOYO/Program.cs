@@ -1,5 +1,7 @@
+using HotelListing.IRepository;
 using Microsoft.EntityFrameworkCore;
 using NotOYO.Models;
+using NotOYO.Repository;
 using Serilog;
 using Serilog.Events;
 
@@ -15,6 +17,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAutoMapper(typeof(Mapper));
 builder.Services.AddMvc();
 builder.Services.AddMvcCore();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Host.UseSerilog();
 builder.Services.AddDbContext<Mapper>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString")));
